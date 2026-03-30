@@ -1,0 +1,77 @@
+---
+interface Pyr {
+    pregunta: string;
+    respuesta: string;
+}
+interface Props {
+    preguntasRespuestas?: Pyr[];
+}
+
+const {
+    preguntasRespuestas = [
+        {
+            pregunta: "¿En qué directivas de Control Interno brindan capacitación?",
+            respuesta: "Nos especializamos en la implementación del Sistema de Control Interno bajo la Directiva 006-2019 y la Directiva 011-2019, asegurando que las entidades cumplan con los entregables y plazos exigidos por la Contraloría.",
+        },
+        {
+            pregunta: "¿Qué temas cubren sus cursos de Gestión Pública?",
+            respuesta: "Contamos con un catálogo integral que incluye: Contrataciones del Estado, Ética e Integridad en la Función Pública, Delitos contra la Administración Pública y la Ley de Hostigamiento Sexual Laboral.",
+        },
+        {
+            pregunta: "¿Ofrecen capacitación en habilidades blandas para el sector público?",
+            respuesta: "Sí. Entendemos que la gestión técnica requiere liderazgo. Ofrecemos talleres de Inteligencia Emocional, Manejo de Conflictos y Desarrollo de Habilidades Blandas diseñados específicamente para el entorno de las Entidades del Estado.",
+        },
+        {
+            pregunta: "¿Cómo ayudan en la fase de implementación del Plan de Acción Anual?",
+            respuesta: "Brindamos asistencia técnica directa en la elaboración de Medidas de Remediación y Medidas de Control, así como en la Evaluación Anual de la Implementación del Sistema de Control Interno.",
+        },
+        {
+            pregunta: "¿Brindan servicios también para el sector privado?",
+            respuesta: "Además de nuestra especialización en gestión pública, ofrecemos servicios de asesoría en toma de decisiones y diseño de estrategias de gestión para entidades privadas que buscan optimizar sus procesos operativos.",
+        }
+    ]
+} = Astro.props;
+---
+
+<section class="w-full max-w-3xl mx-auto py-10 md:py-12 px-4 font-sans">
+    <div class="space-y-3 md:space-y-4">
+        {preguntasRespuestas.map((item) => (
+                <details class="group border border-slate-200 rounded-xl bg-white shadow-sm transition-all duration-300 open:border-sky-500 open:shadow-md">
+                    <summary class="list-none cursor-pointer p-4 md:p-5 flex justify-between items-center select-none outline-none">
+                    <span class="text-sm md:text-lg font-semibold pr-3 text-slate-800 group-open:text-sky-700 transition-colors leading-tight">
+                        {item.pregunta}
+                    </span>
+                        <div class="shrink-0 w-7 h-7 md:w-8 md:h-8 rounded-full bg-slate-50 group-hover:bg-sky-50 flex items-center justify-center transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 group-open:rotate-180 text-slate-500 group-open:text-sky-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m6 9 6 6 6-6"/>
+                            </svg>
+                        </div>
+                    </summary>
+
+                    <div class="px-4 pb-4 md:px-5 md:pb-5 text-slate-600 text-xs md:text-base leading-relaxed border-t border-slate-50 pt-3 md:pt-4 animate-slide-down">
+                        {item.respuesta}
+                    </div>
+                </details>
+        ))}
+    </div>
+</section>
+
+<style>
+	summary::-webkit-details-marker,
+	summary::marker {
+		display: none;
+	}
+	.animate-slide-down {
+		animation: slideDown 0.3s ease-out;
+	}
+	@keyframes slideDown {
+		from {
+			opacity: 0;
+			transform: translateY(-8px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+</style>

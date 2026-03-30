@@ -1,0 +1,70 @@
+---
+import { Image } from "astro:assets";
+import College from '../assets/College.jpg'
+---
+<section class="relative w-full min-h-[60vh] md:h-screen flex items-center justify-center overflow-hidden font-sans bg-white md:bg-transparent pt-28 pb-12 md:py-0">
+
+    <div class="absolute inset-0 z-0 hidden md:block">
+        <div class="absolute inset-0 bg-linear-to-r from-[#001F5B]/90 to-black/40 z-10"></div>
+        <Image
+                src={College}
+                alt="Imagen Principal de In House Perú - Gestión Pública"
+                quality="high"
+                class="w-full h-full object-cover"
+        />
+    </div>
+
+    <div class="relative z-20 max-w-5xl mx-auto px-6 text-center md:text-left">
+        <div class="space-y-6 md:space-y-8">
+
+            <span class="inline-block px-4 py-1.5 rounded-full bg-[#00BCD4] text-white text-[10px] md:text-sm font-bold tracking-[0.2em] uppercase shadow-lg shadow-[#00BCD4]/20 animate-fade-in">
+                Liderazgo en Gestión Pública
+            </span>
+
+            <h1 class="text-3xl md:text-6xl lg:text-7xl font-extrabold text-[#001F5B] md:text-white tracking-tight leading-tight md:leading-[1.1]">
+                Consultoría que <br class="hidden md:block"/>
+                <span class="text-[#00BCD4]">Transforma</span> el Sector Público
+            </h1>
+
+            <p class="text-base md:text-2xl text-slate-600 md:text-slate-200 max-w-2xl leading-relaxed font-medium mx-auto md:mx-0">
+                Expertos en Control Interno y Gestión Pública desde 2022. Brindamos soluciones estratégicas y capacitación de alto impacto para fortalecer la integridad y eficiencia en las entidades del Estado.
+            </p>
+
+            <div class="hidden md:flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
+                <a href="#nuestros-servicios">
+                    <button class="px-8 py-4 bg-white text-[#001F5B] font-bold rounded-xl hover:bg-[#00BCD4] hover:text-white transition-all duration-300 shadow-xl active:scale-95 cursor-pointer">
+                        Nuestros Servicios
+                    </button>
+                </a>
+                <a
+                        href="#quienes-somos"
+                        class="px-8 py-4 bg-transparent border-2 border-white/30 text-white font-bold rounded-xl hover:bg-white/10 backdrop-blur-sm transition-all duration-300 text-center cursor-pointer"
+                >
+                    Saber más
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:block animate-bounce opacity-50">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 13 5 5 5-5M7 6l5 5 5-5"/></svg>
+    </div>
+</section>
+
+<style is:global>
+	html {
+		scroll-behavior: smooth !important;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto !important;
+		}
+	}
+	@keyframes fadeIn {
+		from { opacity: 0; transform: translateY(10px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+	.animate-fade-in {
+		animation: fadeIn 0.8s ease-out forwards;
+	}
+</style>

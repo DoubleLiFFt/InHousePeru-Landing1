@@ -1,0 +1,77 @@
+---
+import { Image } from 'astro:assets'
+import ImageServices from '../assets/Services.jpg'
+
+interface Pyr {
+    title? : string;
+    text? : string;
+}
+interface Props {
+    Servicios? : Pyr[];
+}
+
+const icons = {
+    Capacitación: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
+    Consultoría: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>`,
+    Asesoría: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`
+};
+
+const {
+    Servicios = [
+        {
+            title : "Capacitación",
+            text : "Áreas clave de gestión pública."
+        },
+        {
+            title : "Consultoría",
+            text : "Diseño e implementación de políticas y estrategias."
+        },
+        {
+            title : "Asesoría",
+            text : "Toma de decisiones y resolución de problemas específicos."
+        }
+    ]
+} = Astro.props;
+---
+<section id="nuestros-servicios" class="w-full max-w-7xl mx-auto py-16 md:py-24 px-6 md:px-12 font-sans bg-white scroll-mt-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+        <div class="hidden md:flex justify-center md:justify-end order-2 md:order-1">
+            <div class="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-112.5 lg:h-112.5">
+                <div class="absolute -bottom-6 -right-6 w-full h-full rounded-full bg-[#00BCD4]/10 border-2 border-[#00BCD4]/20"></div>
+
+                <Image
+                        src={ImageServices}
+                        alt="Imagen para demostrar servicios de consultoría"
+                        quality="high"
+                        class="rounded-full object-cover w-full h-full shadow-2xl border-8 border-white relative z-10"
+                />
+            </div>
+        </div>
+
+        <div class="flex flex-col justify-center order-1 md:order-2 space-y-10">
+            <h2 class="text-sm md:text-base font-bold uppercase tracking-[.25em] text-[#00BCD4] ml-4">
+                Nuestros Servicios
+            </h2>
+
+            <div class="space-y-4">
+                {Servicios.map((item => (
+                        <div class="group flex items-center gap-6 p-4 md:p-6 rounded-2xl transition-all duration-300 hover:bg-[#00BCD4]/5 border-l-4 border-transparent hover:border-[#00BCD4]">
+                            <div class="shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-[#001F5B]/5 text-[#001F5B] flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-[#00BCD4] group-hover:text-white shadow-sm">
+                                <Fragment set:html={icons[item.title as keyof typeof icons]} />
+                            </div>
+
+                            <div class="flex flex-col">
+                                <h1 class="text-xl md:text-3xl font-extrabold tracking-tight text-[#001F5B] transition-colors group-hover:text-[#00BCD4]">
+                                    { item.title }
+                                </h1>
+                                <p class="text-base md:text-xl text-slate-600 font-medium leading-tight">
+                                    { item.text }
+                                </p>
+                            </div>
+                        </div>
+                )))}
+            </div>
+        </div>
+    </div>
+</section>
